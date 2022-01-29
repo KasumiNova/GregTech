@@ -5,6 +5,8 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.GTValues;
 import gregtech.api.capability.impl.*;
+import gregtech.api.metatileentity.multiblock.ICleanroomProvider;
+import gregtech.api.metatileentity.multiblock.ICleanroomReceiver;
 import gregtech.api.metatileentity.sound.ISoundCreator;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
@@ -32,7 +34,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
-public abstract class WorkableTieredMetaTileEntity extends TieredMetaTileEntity implements ISoundCreator, IDataInfoProvider {
+public abstract class WorkableTieredMetaTileEntity extends TieredMetaTileEntity implements ISoundCreator, IDataInfoProvider, ICleanroomReceiver {
 
     protected final RecipeLogicEnergy workable;
     protected final RecipeMap<?> recipeMap;
@@ -41,6 +43,8 @@ public abstract class WorkableTieredMetaTileEntity extends TieredMetaTileEntity 
     private final Function<Integer, Integer> tankScalingFunction;
 
     public final boolean handlesRecipeOutputs;
+
+    private ICleanroomProvider cleanroom;
 
     public WorkableTieredMetaTileEntity(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer, int tier,
                                         Function<Integer, Integer> tankScalingFunction) {
@@ -212,5 +216,15 @@ public abstract class WorkableTieredMetaTileEntity extends TieredMetaTileEntity 
         }
 
         return list;
+    }
+
+    @Override
+    public ICleanroomProvider getCleanroom() {
+        return this.cleanroom;
+    }
+
+    @Override
+    public void setCleanroom(ICleanroomProvider provider) {
+        this.cleanroom = provider;
     }
 }
