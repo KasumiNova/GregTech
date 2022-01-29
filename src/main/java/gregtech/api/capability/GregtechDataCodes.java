@@ -63,7 +63,7 @@ public class GregtechDataCodes {
     // Multiblock implementation update codes
     public static final int SYNC_CONTROLLER = 100;
     public static final int IS_ROTOR_LOOPING = 200;
-    public static final int UPDATE_ROTOR_COLOR = 201;
+    public static final int UPDATE_STRUCTURE_SIZE = 201;
     public static final int STRUCTURE_FORMED = 400;
     public static final int IS_TAPED = 550;
     public static final int STORE_MAINTENANCE = 551;
